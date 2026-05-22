@@ -1,4 +1,4 @@
-# Yuze Gallery
+# Yuze Portfolio
 
 A small Flask photo gallery.
 
