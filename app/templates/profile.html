@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuze's Image Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navigator.css') }}?v=2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="navigator">
+            <div class="title">
+                <p>Yuze's Image Gallery</p>
+            </div>
+            <div class="buttons">
+                <!-- <i class="fa-solid fa-magnifying-glass button"></i> -->
+                <div class="category-menu">
+                    <button class="button category-toggle" type="button">Gallery</button>
+                    <div class="category-dropdown">
+                        <button class="category-option active" type="button" data-category="all">All Photos</button>
+                        {% for category in categories %}
+                        <button class="category-option" type="button" data-category="{{ category }}">{{ category }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+                <p class="button" id="to_profile" style="scale: 1.3; font-weight: bold;">Profile</p>
+            </div>
+            <!-- <div class="phone_buttons">
+                <i class="fa-solid fa-bars"></i>
+            </div> -->
+        </div>
+        <div class="profile">
+            <section class="content me">
+                <h3>About Me</h3>
+                <h4>About Me</h4>
+                Hi! I'm Yuze Wang, a 12th-grade student at Beijing No.80 High School with a passion for programming and photography. I specialize in travel photography, creating images that tell stories.
+            </section>
+            <section class="content journey">
+                <h3>My Journey</h3>
+                <h4>My Journey</h4>
+                My work has been showcased at school events, where I shared my perspective on the world through my lens. Photography for me is about preserving fleeting moments and finding beauty in the unexpected. Over the years, I've traveled to places like Beijing, Inner Mongolia, Shanghai, Shandong, Henan, Hong Kong, and Macau (China), Vancouver (Canada), the Maldives, Phuket and Bangkok (Thailand), as well as Osaka, Kyoto, and Kobe (Japan), capturing unique moments along the way.
+            </section>
+            <section class="content love">
+                <h3>What I Love</h3>
+                <h4>What I Love</h4>
+                I love capturing the interplay of light and shadow, especially during sunrises, sunsets, and moonlit nights. Every photo I take reflects my emotions at that moment, and each is a unique, unrepeatable expression of how I see the world.
+            </section>
+            <section class="content connect">
+                <h3>Let's Connect</h3>
+                <h4>Let's Connect</h4>
+                I'd love to hear from you! You can email me at yuze.wang2006@outlook.com or follow me on Instagram @yuze.w_ to explore more of my work.
+            </section>
+          </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/to_gallery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/gallery_filter.js') }}?v=6"></script>
+</body>
+</html>
