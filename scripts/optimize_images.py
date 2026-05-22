@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import argparse
+import json
+from datetime import datetime
 from pathlib import Path
 
 from PIL import Image, ImageOps
@@ -8,8 +10,10 @@ from PIL import Image, ImageOps
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE_DIR = PROJECT_ROOT / "photos-original"
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "app" / "static" / "images"
+DEFAULT_MANIFEST_NAME = "photos.json"
 SUPPORTED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
 SKIPPED_EXTENSIONS = {".heic", ".heif"}
+EXIF_DATE_TAGS = (36867, 36868, 306)
 
 
 def parse_args():
@@ -70,6 +74,39 @@ def resized_dimensions(width, height, max_width):
     return max_width, round(height * ratio)
 
 
+def parse_exif_datetime(value):
+    if not value:
+        return None
+
+    if isinstance(value, bytes):
+        value = value.decode("utf-8", errors="ignore")
+
+    value = str(value).strip()
+    for date_format in ("%Y:%m:%d %H:%M:%S", "%Y-%m-%d %H:%M:%S"):
+        try:
+            return datetime.strptime(value, date_format)
+        except ValueError:
+            continue
+
+    return None
+
+
+def get_photo_datetime(source_path):
+    try:
+        with Image.open(source_path) as image:
+            exif = image.getexif()
+    except Exception:
+        exif = None
+
+    if exif:
+        for tag in EXIF_DATE_TAGS:
+            photo_datetime = parse_exif_datetime(exif.get(tag))
+            if photo_datetime:
+                return photo_datetime
+
+    return datetime.fromtimestamp(source_path.stat().st_mtime)
+
+
 def optimize_image(source_path, output_path, max_width, quality):
     with Image.open(source_path) as image:
         image = ImageOps.exif_transpose(image)
@@ -92,6 +129,15 @@ def display_path(path):
         return path
 
 
+def write_manifest(output_dir, entries):
+    manifest_path = output_dir / DEFAULT_MANIFEST_NAME
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(
+        json.dumps({"photos": entries}, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
+
+
 def main():
     args = parse_args()
     source_dir = args.source.resolve()
@@ -106,6 +152,7 @@ def main():
     skipped = 0
     skipped_heic = 0
     failed = 0
+    manifest_entries = {}
 
     for source_path in iter_source_images(source_dir):
         extension = source_path.suffix.lower()
@@ -121,9 +168,16 @@ def main():
 
         relative_path = source_path.relative_to(source_dir)
         output_path = output_dir / relative_path.with_suffix(".webp")
+        output_relative_path = output_path.relative_to(output_dir).as_posix()
+        photo_datetime = get_photo_datetime(source_path)
 
         if should_skip(source_path, output_path, args.force):
             skipped += 1
+            if output_path.exists():
+                manifest_entries[output_relative_path] = {
+                    "date": photo_datetime.strftime("%Y-%m-%d"),
+                    "sort_key": photo_datetime.timestamp(),
+                }
             continue
 
         try:
@@ -134,13 +188,20 @@ def main():
             continue
 
         processed += 1
+        manifest_entries[output_relative_path] = {
+            "date": photo_datetime.strftime("%Y-%m-%d"),
+            "sort_key": photo_datetime.timestamp(),
+        }
         print(f"optimized: {relative_path} -> {display_path(output_path)}")
+
+    write_manifest(output_dir, manifest_entries)
 
     print()
     print(f"Processed: {processed}")
     print(f"Skipped: {skipped}")
     print(f"Skipped HEIC/HEIF: {skipped_heic}")
     print(f"Failed: {failed}")
+    print(f"Manifest entries: {len(manifest_entries)}")
 
     return 1 if failed else 0
 

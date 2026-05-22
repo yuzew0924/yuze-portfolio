@@ -1,8 +1,10 @@
+import json
 from datetime import datetime
 from pathlib import Path
 
 
 IMAGE_DIR = Path(__file__).resolve().parent / "static" / "images"
+PHOTO_MANIFEST = IMAGE_DIR / "photos.json"
 WEB_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 DEFAULT_CATEGORY = "Uncategorized"
 EXTENSION_PRIORITY = {
@@ -14,8 +16,20 @@ EXTENSION_PRIORITY = {
 }
 
 
+def load_photo_manifest():
+    if not PHOTO_MANIFEST.exists():
+        return {}
+
+    try:
+        with PHOTO_MANIFEST.open(encoding="utf-8") as manifest_file:
+            return json.load(manifest_file).get("photos", {})
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
 def get_images():
     image_candidates = {}
+    photo_manifest = load_photo_manifest()
 
     for image_path in IMAGE_DIR.rglob("*"):
         if not image_path.is_file():
@@ -27,14 +41,17 @@ def get_images():
 
         modified_time = image_path.stat().st_mtime
         relative_path = image_path.relative_to(IMAGE_DIR)
+        manifest_data = photo_manifest.get(relative_path.as_posix(), {})
         category = relative_path.parts[0] if len(relative_path.parts) > 1 else DEFAULT_CATEGORY
         dedupe_key = relative_path.with_suffix("").as_posix().lower()
         image = {
             "filename": image_path.name,
             "path": relative_path.as_posix(),
             "category": category,
-            "date": datetime.fromtimestamp(modified_time).strftime("%Y-%m-%d"),
-            "sort_key": modified_time,
+            "date": manifest_data.get(
+                "date", datetime.fromtimestamp(modified_time).strftime("%Y-%m-%d")
+            ),
+            "sort_key": manifest_data.get("sort_key", modified_time),
             "extension_priority": EXTENSION_PRIORITY[extension],
         }
 
