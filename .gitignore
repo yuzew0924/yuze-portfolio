@@ -7,3 +7,4 @@ env/
 .env
 instance/
 .pytest_cache/
+photos-original/
