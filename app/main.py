@@ -2,7 +2,7 @@ import random
 
 from flask import Flask, render_template
 
-from photo_loader import get_categories, get_images
+from app.photo_loader import get_categories, get_images
 
 app = Flask(__name__)
 
