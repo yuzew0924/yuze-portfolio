@@ -33,6 +33,14 @@
     white-space: nowrap;
 }
 
+.navigator .title a{
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /* .navigator .title p:hover{
     font-size: 37px;
 } */

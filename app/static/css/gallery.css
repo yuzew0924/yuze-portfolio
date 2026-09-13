@@ -13,10 +13,87 @@ body {
     width: 100%;
 }
 
+.gallery-header{
+    width: min(1180px, calc(100% - 50px));
+    margin: 32px auto 8px;
+    font-family: "EB Garamond", serif;
+}
+
+.back-home{
+    display: inline-block;
+    margin-bottom: 22px;
+    color: #263746;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.back-home:hover{
+    color: #6c3847;
+}
+
+.gallery-title-row{
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.gallery-kicker{
+    color: #5b6c7a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.gallery-title-row h1{
+    font-size: clamp(38px, 6vw, 70px);
+    font-weight: 550;
+    line-height: 1;
+}
+
+.gallery-title-row > p{
+    color: #4c5f70;
+    font-size: 18px;
+}
+
+.collection-switcher{
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+    padding-bottom: 6px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.collection-switcher a{
+    flex: 0 0 auto;
+    padding: 7px 12px;
+    color: #263746;
+    border: 1px solid rgba(38, 55, 70, 0.2);
+    border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.collection-switcher a:hover,
+.collection-switcher a.active{
+    color: white;
+    background: #263746;
+}
+
 .waterfall {
     column-gap: 20px;
     padding: 0 25px;
     margin-top: 25px;
+}
+
+.gallery-footer-space{
+    height: clamp(55px, 9vh, 110px);
 }
 
 .item
@@ -100,8 +177,19 @@ body {
     }
 }
 @media (max-width: 500px){
+    .gallery-header{
+        width: calc(100% - 28px);
+        margin-top: 22px;
+    }
+    .back-home{
+        margin-bottom: 18px;
+    }
+    .gallery-title-row > p{
+        font-size: 15px;
+    }
     .waterfall {
         column-count: 1;
+        padding: 0 14px;
     }
 }
 
