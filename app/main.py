@@ -23,15 +23,36 @@ def add_image_ratios(images):
     return collage_images
 
 
+def get_landscape_images(images, min_ratio=1.4):
+    landscape_images = []
+    for image in images:
+        try:
+            with Image.open(IMAGE_DIR / image["path"]) as photo:
+                width, height = photo.size
+        except (OSError, ValueError):
+            continue
+
+        if width / max(height, 1) >= min_ratio:
+            landscape_images.append(image)
+
+    return landscape_images
+
+
 @app.route('/')
 def profile():
     img_list = get_images()
-    covers = random.sample(img_list, min(5, len(img_list)))
+    covers = random.sample(img_list, min(3, len(img_list)))
+    landscape_images = get_landscape_images(img_list)
+    hero_image = random.choice(landscape_images or img_list) if img_list else None
     gallery_entry = {
         "covers": add_image_ratios(covers),
         "count": len(img_list),
     }
-    return render_template('profile.html', gallery_entry=gallery_entry)
+    return render_template(
+        'profile.html',
+        gallery_entry=gallery_entry,
+        hero_image=hero_image,
+    )
 
 
 @app.route('/profile')
