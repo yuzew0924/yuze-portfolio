@@ -1,137 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethan (Yuze) Wang</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethan's Personal Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/font.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navigator.css') }}?v=2">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}?v=3">
 </head>
 <body>
-    <div class="container">
-        <div class="navigator">
-            <div class="title">
-                <p>Ethan's Personal Website</p>
-            </div>
-        </div>
-        <div class="profile">
-            <section class="content me">
-                <h3>About Me</h3>
-                <h4>About Me</h4>
-                <p>Hi, I’m Ethan, a Computer Science student at the University of Washington interested in building intelligent systems that can reason, make decisions, and interact with the real world.</p>
-                <p>My work spans machine learning, NLP, agentic AI, and full-stack software development. I enjoy turning ideas into end-to-end systems, from designing algorithms and backend services to evaluating how AI systems behave under uncertainty.</p>
-                <p>I’m currently expanding my interests toward robotics, computer vision, and autonomous systems, particularly at the intersection of AI reasoning and real-world decision-making.</p>
-            </section>
-            <section class="content journey">
-                <h3>Beyond Computer Science</h3>
-                <h4>Beyond Computer Science</h4>
-                <p>Outside of computer science, photography has remained an important creative outlet for me. Traveling and capturing moments through a lens has taught me to pay attention to details, perspectives, and visual storytelling.</p>
-                <p>I enjoy exploring the connection between technical problem-solving and creativity, whether through software, AI systems, or photography.</p>
-            </section>
-            <section class="content love">
-                <h3>What I’m Exploring</h3>
-                <h4>What I‘m Exploring</h4>
-                <ul>
-                    <li>Artificial Intelligence &amp; Machine Learning</li>
-                    <li>NLP &amp; Agentic AI</li>
-                    <li>Computer Vision</li>
-                    <li>Robotics &amp; Autonomous Systems</li>
-                    <li>Full-Stack Software Development</li>
-                </ul>
-            </section>
-            <section class="content projects">
-                <div class="section-heading">
-                    <div>
-                        <h3>Selected Projects</h3>
-                        <h4>Selected Projects</h4>
-                    </div>
-                    <a class="github-profile" href="https://github.com/yuzew0924" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-github" aria-hidden="true"></i>
-                        View all on GitHub
-                    </a>
-                </div>
-                <div class="project-grid">
-                    <article class="project-card">
-                        <div class="project-topline">
-                            <span class="project-number">01</span>
-                            <a href="https://github.com/yuzew0924/Calendar_Agent" target="_blank" rel="noopener noreferrer" aria-label="Open Calendar Agent on GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                        </div>
-                        <h5>Calendar Agent</h5>
-                        <p>A course-planning assistant that generates, ranks, and visualizes conflict-free weekly schedules around each student's preferences.</p>
-                        <div class="project-tags"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>Python</span></div>
-                        <a class="project-link" href="https://courseschedulepilot.vercel.app" target="_blank" rel="noopener noreferrer">Visit live app <span aria-hidden="true">&rarr;</span></a>
-                    </article>
-                    <article class="project-card">
-                        <div class="project-topline">
-                            <span class="project-number">02</span>
-                            <a href="https://github.com/yuzew0924/uw-major-advisor" target="_blank" rel="noopener noreferrer" aria-label="Open UW Major Advisor on GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                        </div>
-                        <h5>UW Major Advisor</h5>
-                        <p>A citation-grounded RAG assistant that answers questions about admissions and requirements for seven University of Washington majors.</p>
-                        <div class="project-tags"><span>RAG</span><span>FAISS</span><span>OpenAI</span><span>Streamlit</span></div>
-                        <a class="project-link" href="https://uw-major-advisor.streamlit.app/" target="_blank" rel="noopener noreferrer">Visit live app <span aria-hidden="true">&rarr;</span></a>
-                    </article>
-                    <article class="project-card">
-                        <div class="project-topline">
-                            <span class="project-number">03</span>
-                            <a href="https://github.com/yuzew0924/lunar-phase-classification" target="_blank" rel="noopener noreferrer" aria-label="Open Lunar Phase Classification on GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                        </div>
-                        <h5>Lunar Phase Classification</h5>
-                        <p>An image-classification study comparing a custom CNN with ResNet-18 transfer learning across seven lunar phases and 1,297 images.</p>
-                        <div class="project-tags"><span>PyTorch</span><span>ResNet-18</span><span>CNN</span><span>Computer Vision</span></div>
-                        <a class="project-link" href="https://github.com/yuzew0924/lunar-phase-classification" target="_blank" rel="noopener noreferrer">Explore repository <span aria-hidden="true">&rarr;</span></a>
-                    </article>
-                    <article class="project-card">
-                        <div class="project-topline">
-                            <span class="project-number">04</span>
-                            <a href="https://github.com/yuzew0924/heart-disease-analysis" target="_blank" rel="noopener noreferrer" aria-label="Open Heart Disease Analysis on GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-                        </div>
-                        <h5>Heart Disease Analysis</h5>
-                        <p>An exploratory analysis and model comparison using clinical variables to study and predict heart-disease outcomes.</p>
-                        <div class="project-tags"><span>Python</span><span>scikit-learn</span><span>EDA</span><span>Jupyter</span></div>
-                        <a class="project-link" href="https://github.com/yuzew0924/heart-disease-analysis" target="_blank" rel="noopener noreferrer">Explore repository <span aria-hidden="true">&rarr;</span></a>
-                    </article>
-                </div>
-            </section>
-            <section class="content gallery-collections" aria-labelledby="gallery-heading">
-                <div class="section-heading gallery-heading">
-                    <div>
-                        <h3 id="gallery-heading">Gallery</h3>
-                        <h4>Gallery</h4>
-                    </div>
-                    <p class="gallery-intro">Stories collected through my lens.</p>
-                </div>
-                <div class="gallery-grid single-gallery">
-                    <a class="gallery-card" href="{{ url_for('gallery_all') }}" aria-label="View Gallery, {{ gallery_entry.count }} photos">
-                        <div class="gallery-preview">
-                            {% for img in gallery_entry.covers %}
-                            <img src="{{ url_for('static', filename='images/' ~ img.path) }}" alt="" style="--image-ratio: {{ img.aspect_ratio }}" loading="lazy" decoding="async">
-                            {% endfor %}
-                        </div>
-                        <div class="gallery-card-info">
-                            <div>
-                                <h5>Gallery</h5>
-                                <p>{{ gallery_entry.count }} photos</p>
-                            </div>
-                            <span class="gallery-arrow" aria-hidden="true">&rarr;</span>
-                        </div>
-                    </a>
-                </div>
-            </section>
-            <section class="content connect">
-                <h3>Let's Connect</h3>
-                <h4>Let's Connect</h4>
-                <p>I'd love to connect and share ideas, projects, or experiences.</p>
-                <p>📞 Phone: (206)-551-2606</p>
-                <p>📧 Email: <a href="mailto:yuzew924@uw.edu">yuzew924@uw.edu</a></p>
-                <p>📷 Instagram: <a href="https://www.instagram.com/yuze.w_/">@yuze.w_</a></p>
-                <p><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub: <a href="https://github.com/yuzew0924" target="_blank" rel="noopener noreferrer">@yuzew0924</a></p>
-            </section>
-          </div>
-    </div>
-</body>
-</html>
+<header class="site-header"><a class="brand" href="#home">Ethan's Personal Website</a><nav aria-label="Main navigation"><a class="active" href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="hero-copy"><h1>Building intelligent<br>systems for a more<br>curious world.</h1><p>I’m Ethan, a Computer Science student at the University of Washington exploring AI, robotics, and real-world applications through research, projects, and creativity.</p><div class="hero-actions"><a class="button button-primary" href="#projects">View My Projects <span>→</span></a><a class="button button-secondary" href="#contact">Get In Touch</a></div></div><a class="hero-image" href="{{ url_for('gallery_all') }}" aria-label="Open the full photo gallery"><img src="{{ url_for('static', filename='images/' ~ gallery_entry.covers[0].path) }}" alt="A photograph from Ethan's gallery"></a></section>
+<section class="section about" id="about"><div class="about-copy"><h2>About Me</h2><p>Hi, I’m Ethan, a Computer Science student at the University of Washington. I’m passionate about building intelligent systems that can make a real impact. I enjoy turning ideas into end-to-end projects, from designing algorithms to building full-stack applications, and I’m especially interested in the intersection of AI, robotics, and real-world decision-making.</p></div><div class="interests"><h3>My Interests</h3><div class="tags"><span>Artificial Intelligence</span><span>Machine Learning</span><span>NLP &amp; Agentic AI</span><span>Computer Vision</span><span>Robotics &amp; Autonomous Systems</span><span>Full-Stack Development</span></div></div></section>
+<section class="section projects" id="projects"><div class="section-heading"><h2>Selected Projects</h2><a href="https://github.com/yuzew0924" target="_blank" rel="noopener noreferrer">View all projects <span>→</span></a></div><div class="project-grid">
+<article class="project-card"><div class="project-visual visual-calendar"><i class="fa-regular fa-calendar-check"></i></div><div class="project-content"><h3>Calendar Agent</h3><p>A conversational assistant that generates, ranks, and visualizes conflict-free weekly schedules around a student’s preferences.</p><div class="tags"><span>React</span><span>Python</span><span>OpenAI</span></div><a href="https://courseschedulepilot.vercel.app" target="_blank">Visit live app →</a></div></article>
+<article class="project-card"><div class="project-visual visual-uw"><strong>W</strong></div><div class="project-content"><h3>UW Major Advisor</h3><p>A chatbot-powered RAG assistant that answers questions about admissions and requirements for the University of Washington.</p><div class="tags"><span>RAG</span><span>Python</span><span>Streamlit</span></div><a href="https://uw-major-advisor.streamlit.app/" target="_blank">Visit live app →</a></div></article>
+<article class="project-card"><div class="project-visual visual-moon"><i class="fa-solid fa-moon"></i><i class="fa-regular fa-moon"></i></div><div class="project-content"><h3>Lunar Phase Classification</h3><p>An image classification study comparing a custom CNN with ResNet-18 transfer learning across seven lunar phases.</p><div class="tags"><span>PyTorch</span><span>CNN</span><span>Computer Vision</span></div><a href="https://github.com/yuzew0924/lunar-phase-classification" target="_blank">Explore repository →</a></div></article>
+<article class="project-card"><div class="project-visual visual-heart"><i class="fa-solid fa-heart-pulse"></i></div><div class="project-content"><h3>Heart Disease Analysis</h3><p>An exploratory analysis and model comparison using clinical variables to study and predict heart-disease outcomes.</p><div class="tags"><span>Python</span><span>Scikit-learn</span><span>EDA</span></div><a href="https://github.com/yuzew0924/heart-disease-analysis" target="_blank">Explore repository →</a></div></article>
+</div></section>
+<section class="section gallery" id="gallery"><div class="section-heading"><h2>Gallery</h2><a href="{{ url_for('gallery_all') }}">View full gallery <span>→</span></a></div><a class="gallery-strip" href="{{ url_for('gallery_all') }}" aria-label="View full gallery, {{ gallery_entry.count }} photos">{% for img in gallery_entry.covers %}<img src="{{ url_for('static', filename='images/' ~ img.path) }}" alt="" decoding="async">{% endfor %}</a></section>
+<section class="section contact" id="contact"><div><h2>Let’s Connect</h2><p>I'd love to connect and share ideas, projects, or experiences.</p></div><div class="contact-links"><a href="mailto:yuzew924@uw.edu"><i class="fa-regular fa-envelope"></i><span><small>Email</small>yuzew924@uw.edu</span></a><a href="tel:+12065512606"><i class="fa-solid fa-phone"></i><span><small>Phone</small>(206) 551-2606</span></a><a href="https://github.com/yuzew0924" target="_blank"><i class="fa-brands fa-github"></i><span><small>GitHub</small>@yuzew0924</span></a><a href="https://www.instagram.com/yuze.w_/" target="_blank"><i class="fa-brands fa-instagram"></i><span><small>Instagram</small>@yuze.w</span></a></div></section>
+</main>
+</body></html>

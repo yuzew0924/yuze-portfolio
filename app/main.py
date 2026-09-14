@@ -7,13 +7,6 @@ from app.photo_loader import IMAGE_DIR, get_categories, get_images
 
 app = Flask(__name__)
 
-GALLERY_COVER_PATHS = (
-    "Landscape/DSC07020.webp",
-    "Travel/DSC09153.webp",
-    "Nature/DSC09420.webp",
-)
-
-
 def add_image_ratios(images):
     collage_images = []
     for image in images:
@@ -33,10 +26,7 @@ def add_image_ratios(images):
 @app.route('/')
 def profile():
     img_list = get_images()
-    images_by_path = {image["path"]: image for image in img_list}
-    covers = [images_by_path[path] for path in GALLERY_COVER_PATHS if path in images_by_path]
-    if not covers:
-        covers = img_list[:3]
+    covers = random.sample(img_list, min(5, len(img_list)))
     gallery_entry = {
         "covers": add_image_ratios(covers),
         "count": len(img_list),
