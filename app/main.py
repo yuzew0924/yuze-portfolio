@@ -43,7 +43,7 @@ def profile():
     img_list = get_images()
     landscape_images = get_landscape_images(img_list)
     cover_pool = landscape_images or img_list
-    covers = random.sample(cover_pool, min(3, len(cover_pool)))
+    covers = random.sample(cover_pool, min(4, len(cover_pool)))
     hero_image = random.choice(landscape_images or img_list) if img_list else None
     gallery_entry = {
         "covers": add_image_ratios(covers),
