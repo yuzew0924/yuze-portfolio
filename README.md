@@ -10,13 +10,25 @@ Keep original full-size photos outside the website image folder:
 photos-original/
 ```
 
-Use the same category folders there:
+Use one of the current category folders:
 
 ```text
-photos-original/City/
-photos-original/Landscape/
-photos-original/Travel/
+photos-original/Aviation/
+photos-original/Culture/
+photos-original/Landscapes/
+photos-original/Nature/
+photos-original/Night/
+photos-original/People/
+photos-original/Pets/
+photos-original/Urban/
 ```
+
+The website presents several folders with longer display names:
+
+- `Culture` → Culture & Landmarks
+- `Nature` → Nature & Wildlife
+- `Night` → Night Sky
+- `Urban` → Urban & Architecture
 
 Then generate web-ready images:
 
@@ -36,25 +48,17 @@ HEIC files are skipped by the optimizer because standard Pillow installs usually
 
 ## Add Photos
 
-Put new web-ready images in:
+Add original `.jpg`, `.jpeg`, `.png`, or `.webp` files to the matching folder
+under `photos-original/`. Do not manually copy originals into
+`app/static/images/`; that folder contains generated website assets.
 
-```text
-app/static/images/
-```
+The gallery scans generated files when each page loads, so new categories are
+created automatically from folder names. If you add a new short folder name
+that needs a longer display label, also update `CATEGORY_LABELS` in
+`app/main.py`.
 
-Supported formats are `.jpg`, `.jpeg`, `.png`, `.webp`, and `.gif`. The gallery scans this folder when the home page loads, so no Excel update is needed.
-
-To add photo types, create folders inside `app/static/images/`:
-
-```text
-app/static/images/landscape/
-app/static/images/portrait/
-app/static/images/street/
-```
-
-Photos in these folders are automatically added to the `Types` dropdown. Photos directly inside `app/static/images/` are shown as `Uncategorized`.
-
-HEIC files are not included because many browsers cannot display them reliably. Convert HEIC photos to JPG or WebP before adding them.
+HEIC files are not published because the current Pillow setup cannot reliably
+decode them. Convert HEIC photos to JPG or WebP before publishing.
 
 ## Publish New Photos
 
