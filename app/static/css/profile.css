@@ -11,3 +11,4 @@
 @media(max-width:650px){.gallery-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .gallery-strip{height:auto;overflow:visible}
 .gallery-strip img{height:auto;aspect-ratio:3/2}
+@media(min-width:651px){.gallery-strip{grid-template-columns:repeat(4,minmax(0,1fr))}}
