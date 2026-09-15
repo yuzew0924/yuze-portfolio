@@ -55,3 +55,23 @@ app/static/images/street/
 Photos in these folders are automatically added to the `Types` dropdown. Photos directly inside `app/static/images/` are shown as `Uncategorized`.
 
 HEIC files are not included because many browsers cannot display them reliably. Convert HEIC photos to JPG or WebP before adding them.
+
+## Publish New Photos
+
+Keep originals in `photos-original/`, using the same category folders as the
+website. To convert only new or changed photos, commit the generated WebP files,
+and push them to `main`, run:
+
+```bash
+.venv/bin/python scripts/publish_photos.py
+```
+
+You can provide a custom commit message:
+
+```bash
+.venv/bin/python scripts/publish_photos.py --message "Add spring photos"
+```
+
+Use `--force` only when every optimized image needs to be rebuilt. Original
+photos remain local and ignored by Git; only files under `app/static/images/`
+are published.
