@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.title }} — Ethan's Personal Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}?v=1">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{{ url_for('profile') }}">Ethan's Personal Website</a>
+        <a class="back-home" href="{{ url_for('profile') }}#projects"><span aria-hidden="true">←</span> Back to projects</a>
+    </header>
+    <main>
+        <section class="project-hero">
+            <div class="hero-copy">
+                <p class="eyebrow">{{ project.eyebrow }}</p>
+                <h1>{{ project.title }}</h1>
+                <p class="summary">{{ project.summary }}</p>
+                <div class="actions">
+                    {% if project.live_url %}<a class="button primary" href="{{ project.live_url }}" target="_blank" rel="noopener noreferrer">Visit live project <span>↗</span></a>{% endif %}
+                    {% if project.github_url %}<a class="button secondary" href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> View source</a>{% endif %}
+                </div>
+            </div>
+            <div class="project-visual {{ project.visual_class }}">
+                {% if project.mark %}<strong>{{ project.mark }}</strong>{% else %}<i class="{{ project.icon }}" aria-hidden="true"></i>{% endif %}
+            </div>
+        </section>
+        <section class="project-body">
+            <article>
+                <p class="section-label">Overview</p>
+                <h2>About the project</h2>
+                <p>{{ project.description }}</p>
+            </article>
+            <aside>
+                <p class="section-label">Built with</p>
+                <div class="tags">{% for technology in project.technologies %}<span>{{ technology }}</span>{% endfor %}</div>
+            </aside>
+        </section>
+        <section class="highlights">
+            <p class="section-label">Highlights</p>
+            <h2>What it does</h2>
+            <div class="highlight-grid">{% for highlight in project.highlights %}<div><span>0{{ loop.index }}</span><p>{{ highlight }}</p></div>{% endfor %}</div>
+        </section>
+        <a class="next-link" href="{{ url_for('profile') }}#projects">Explore more projects <span>→</span></a>
+    </main>
+</body>
+</html>
