@@ -37,7 +37,9 @@
         <div class="waterfall">
             {% for img in img_list%}
             <div class="item" data-category="{{ img.category }}">
-                <img src="{{ url_for('static', filename='images/' ~ img.path) }}" alt="{{ img.filename }}" loading="lazy" decoding="async">
+                <button class="photo-open" type="button" aria-label="Enlarge {{ img.filename }}">
+                    <img src="{{ url_for('static', filename='images/' ~ img.path) }}" alt="{{ img.filename }}" loading="lazy" decoding="async">
+                </button>
                 <div class="view">
                     <div class="category-label">{{ img.category }}</div>
                     <div class="date">{{img.date}}</div>
@@ -49,6 +51,11 @@
           <p class="empty-gallery">No photos in this collection yet.</p>
           <div class="gallery-footer-space" aria-hidden="true"></div>
     </div>
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Full-size photo viewer" hidden>
+        <button class="lightbox-close" type="button" aria-label="Close full-size photo">&times;</button>
+        <img class="lightbox-image" src="" alt="">
+    </div>
     <script src="{{ url_for('static', filename='js/loading.js') }}?v=2"></script>
+    <script src="{{ url_for('static', filename='js/gallery_lightbox.js') }}?v=1"></script>
 </body>
 </html>

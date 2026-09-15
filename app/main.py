@@ -41,8 +41,9 @@ def get_landscape_images(images, min_ratio=1.4):
 @app.route('/')
 def profile():
     img_list = get_images()
-    covers = random.sample(img_list, min(3, len(img_list)))
     landscape_images = get_landscape_images(img_list)
+    cover_pool = landscape_images or img_list
+    covers = random.sample(cover_pool, min(3, len(cover_pool)))
     hero_image = random.choice(landscape_images or img_list) if img_list else None
     gallery_entry = {
         "covers": add_image_ratios(covers),
