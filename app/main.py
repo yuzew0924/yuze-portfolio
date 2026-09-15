@@ -7,55 +7,6 @@ from app.photo_loader import IMAGE_DIR, get_categories, get_images
 
 app = Flask(__name__)
 
-PROJECTS = {
-    "course-schedule-pilot": {
-        "title": "Course Schedule Pilot",
-        "eyebrow": "AI course planning",
-        "summary": "A conversational course-planning assistant that generates, ranks, and visualizes conflict-free weekly schedules around each student's preferences.",
-        "description": "Course Schedule Pilot turns course choices and personal scheduling preferences into practical weekly plans. It combines a conversational interface with schedule generation and ranking so students can compare options without manually resolving every conflict.",
-        "highlights": ["Generates conflict-free weekly schedules", "Ranks options around student preferences", "Presents schedules in an interactive visual interface"],
-        "technologies": ["React", "TypeScript", "FastAPI", "Python", "OpenAI"],
-        "live_url": "https://courseschedulepilot.vercel.app",
-        "github_url": "https://github.com/yuzew0924/Calendar_Agent",
-        "visual_class": "visual-calendar",
-        "icon": "fa-regular fa-calendar-check",
-    },
-    "uw-major-advisor": {
-        "title": "UW Major Advisor",
-        "eyebrow": "Retrieval-augmented advising",
-        "summary": "A citation-grounded RAG assistant for questions about admissions and requirements across University of Washington majors.",
-        "description": "UW Major Advisor makes complex admissions information easier to navigate. It retrieves relevant source material, builds a grounded response, and provides citations so students can verify the guidance against university information.",
-        "highlights": ["Answers questions across seven UW majors", "Uses retrieval to ground responses", "Includes citations for source verification"],
-        "technologies": ["RAG", "FAISS", "Python", "OpenAI", "Streamlit"],
-        "live_url": "https://uw-major-advisor.streamlit.app/",
-        "github_url": "https://github.com/yuzew0924/uw-major-advisor",
-        "visual_class": "visual-uw",
-        "mark": "W",
-    },
-    "lunar-phase-classification": {
-        "title": "Lunar Phase Classification",
-        "eyebrow": "Computer vision study",
-        "summary": "An image-classification study comparing a custom CNN with ResNet-18 transfer learning across seven lunar phases.",
-        "description": "This project explores how convolutional neural networks distinguish visually similar lunar phases. It compares a custom architecture with transfer learning and evaluates performance across a seven-class image dataset.",
-        "highlights": ["Seven-class lunar phase dataset", "Custom CNN and ResNet-18 comparison", "Model evaluation and error analysis"],
-        "technologies": ["PyTorch", "ResNet-18", "CNN", "Computer Vision"],
-        "github_url": "https://github.com/yuzew0924/lunar-phase-classification",
-        "visual_class": "visual-moon",
-        "icon": "fa-solid fa-moon",
-    },
-    "heart-disease-analysis": {
-        "title": "Heart Disease Analysis",
-        "eyebrow": "Applied machine learning",
-        "summary": "An exploratory analysis and model comparison using clinical variables to study and predict heart-disease outcomes.",
-        "description": "This analysis examines relationships between clinical variables and heart-disease outcomes, then compares machine-learning approaches to understand their predictive behavior and tradeoffs.",
-        "highlights": ["Exploratory analysis of clinical variables", "Comparison of multiple predictive models", "Clear evaluation of model performance"],
-        "technologies": ["Python", "scikit-learn", "EDA", "Jupyter"],
-        "github_url": "https://github.com/yuzew0924/heart-disease-analysis",
-        "visual_class": "visual-heart",
-        "icon": "fa-solid fa-heart-pulse",
-    },
-}
-
 def add_image_ratios(images):
     collage_images = []
     for image in images:
@@ -107,14 +58,6 @@ def profile():
 @app.route('/profile')
 def legacy_profile():
     return redirect(url_for('profile'), code=301)
-
-
-@app.route('/projects/<slug>')
-def project_detail(slug):
-    project = PROJECTS.get(slug)
-    if project is None:
-        abort(404)
-    return render_template('project.html', project=project)
 
 
 @app.route('/gallery/<category>')
