@@ -7,6 +7,13 @@ from app.photo_loader import IMAGE_DIR, get_categories, get_images
 
 app = Flask(__name__)
 
+CATEGORY_LABELS = {
+    "Urban": "Urban & Architecture",
+    "Culture": "Culture & Landmarks",
+    "Nature": "Nature & Wildlife",
+    "Night": "Night Sky",
+}
+
 def add_image_ratios(images):
     collage_images = []
     for image in images:
@@ -73,7 +80,9 @@ def gallery(category):
     return render_template(
         'gallery.html',
         categories=categories,
+        category_labels=CATEGORY_LABELS,
         current_category=category,
+        current_category_label=CATEGORY_LABELS.get(category, category),
         img_list=category_images,
     )
 
@@ -86,7 +95,9 @@ def gallery_all():
     return render_template(
         'gallery.html',
         categories=categories,
+        category_labels=CATEGORY_LABELS,
         current_category='All Photos',
+        current_category_label='All Photos',
         img_list=img_list,
     )
 

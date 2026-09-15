@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ current_category }} — Yuze's Gallery</title>
+    <title>{{ current_category_label }} — Yuze's Gallery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/font.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}?v=3">
@@ -23,14 +23,14 @@
             <div class="gallery-title-row">
                 <div>
                     <p class="gallery-kicker">Gallery collection</p>
-                    <h1>{{ current_category }}</h1>
+                    <h1>{{ current_category_label }}</h1>
                 </div>
                 <p>{{ img_list|length }} photos</p>
             </div>
             <nav class="collection-switcher" aria-label="Gallery collections">
                 <a href="{{ url_for('gallery_all') }}" {% if current_category == 'All Photos' %}class="active" aria-current="page"{% endif %}>All Photos</a>
                 {% for category in categories %}
-                <a href="{{ url_for('gallery', category=category) }}" {% if category == current_category %}class="active" aria-current="page"{% endif %}>{{ category }}</a>
+                <a href="{{ url_for('gallery', category=category) }}" {% if category == current_category %}class="active" aria-current="page"{% endif %}>{{ category_labels.get(category, category) }}</a>
                 {% endfor %}
             </nav>
         </header>
@@ -41,7 +41,7 @@
                     <img src="{{ url_for('static', filename='images/' ~ img.path) }}" alt="{{ img.filename }}" loading="lazy" decoding="async">
                 </button>
                 <div class="view">
-                    <div class="category-label">{{ img.category }}</div>
+                    <div class="category-label">{{ category_labels.get(img.category, img.category) }}</div>
                     <div class="date">{{img.date}}</div>
                 </div>
                 <!-- <div class="desc">1 convallis timestamp</div> -->
